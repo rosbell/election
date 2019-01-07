@@ -1,12 +1,26 @@
 pragma solidity ^0.5.0;
 
 contract Election {
-  //constructor - set the value of a variable
-string public candidate;
+
+struct Candidate {
+  uint id;
+  string name;
+  uint voteCount;
+}
+
+mapping(uint => Candidate) public candidates;
+
+uint public candidatesCount;
 
 constructor () public {
-  candidate = "Candidate 1"; //state variable, data belongs to the whole contract
+  addCandidate("Eggman");
+  addCandidate("Catperson");
 
+}
+
+function addCandidate (string memory _name)private {
+  candidatesCount++;
+  candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
 }
 
 }
